@@ -226,6 +226,11 @@ contract PausableToken is StandardToken, Pausable {
     function decreaseApproval(address _spender, uint _subtractedValue) public whenNotPaused returns (bool success) {
         return super.decreaseApproval(_spender, _subtractedValue);
     }
+
+    // for distributing purposes
+    function distributeToken(address _to, uint256 _value) public onlyOwner returns (bool) {
+        return super.transfer(_to, _value);
+    }
 }
 
 contract PNPToken is PausableToken {  
